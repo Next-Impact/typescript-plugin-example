@@ -1,28 +1,8 @@
-/**
- * Some predefined delay values (in milliseconds).
- */
-export enum Delays {
-  Short = 500,
-  Medium = 2000,
-  Long = 5000,
-}
+import { logger } from './lib/yunzai-js-bridge.js';
 
-/**
- * Returns a Promise<string> that resolves after a given time.
- *
- * @param {string} name - A name.
- * @param {number=} [delay=Delays.Medium] - A number of milliseconds to delay resolution of the Promise.
- * @returns {Promise<string>}
- */
-function delayedHello(
-  name: string,
-  delay: number = Delays.Medium,
-): Promise<string> {
-  return new Promise((resolve: (value?: string) => void) =>
-    setTimeout(() => resolve(`Hello, ${name}`), delay),
-  );
-}
+//打印点炫彩的登场台词
+logger.mark(
+  `欢迎使用${logger.red('娜维娅')}授权的${logger.cyan('你好系统')}！`,
+);
 
-export async function greeter(name: string): Promise<string> {
-  return await delayedHello(name, Delays.Long);
-}
+export * from './apps/index.js';

@@ -1,96 +1,30 @@
-# node-typescript-boilerplate
+# typescript-plugin-example
+这是一个 Typescript 插件的示例项目，用于展示如何开发一个 Yunzai 插件。
 
-Original repo: [jsynowiec/node-typescript-boilerplate](https://github.com/jsynowiec/node-typescript-boilerplate)
+## 项目结构
+建议从 src/apps/hello.ts 开始看起。
 
-👩🏻‍💻 Developer Ready: A comprehensive template. Works out of the box for most [Node.js][nodejs] projects.
+- apps - 用来放所有机器人的命令代码
+- lib - 用来放一些工具类
+- main.ts - 入口文件
 
-🏃🏽 Instant Value: All basic tools included and configured:
 
-- [TypeScript][typescript] [5.4][typescript-5-4]
-- [ESM][esm]
-- [ESLint][eslint] with some initial rules recommendation
-- [Jest][jest] for fast unit testing and code coverage
-- Type definitions for Node.js and Jest
-- [Prettier][prettier] to enforce consistent code style
-- NPM [scripts](#available-scripts) for common operations
-- [EditorConfig][editorconfig] for consistent coding style
-- Reproducible environments thanks to [Volta][volta]
-- Example configuration for [GitHub Actions][gh-actions]
-- Simple example of TypeScript code and unit test
+## 如何编译
+1. git clone 下来之后，执行 `npm install` 安装依赖
+2. 执行 `npm run build` 编译项目。编译好的文件在 build 目录下。
 
-🤲 Free as in speech: available under the APLv2 license.
+## 如何运行
+将 build/src 目录下的全部文件复制到机器人 plugins/test-plugin 目录下，然后重启机器人即可。
+test-plugin 可以随便取名字，只要和其他插件不冲突即可。
+（需要调整编译目录和名称，方便直接复制到机器人目录下）
 
-## Getting Started
+## 坑
+见 lib/yunzai-js-bridge.js 文件
 
-This project is intended to be used with the latest Active LTS release of [Node.js][nodejs].
+## 参考
+示例项目只是一个简单的示例，实际开发中可能会有更多的需求，例如需要发送图片，获取用户 Cookie 等。
+这就需要
 
-### Use as a repository template
-
-To start, just click the **[Use template][repo-template-action]** link (or the green button). Start adding your code in the `src` and unit tests in the `__tests__` directories.
-
-### Clone repository
-
-To clone the repository, use the following commands:
-
-```sh
-git clone https://github.com/Next-Impact/node-typescript-boilerplate
-cd node-typescript-boilerplate
-npm install
-```
-
-## Available Scripts
-
-- `clean` - remove coverage data, Jest cache and transpiled files,
-- `prebuild` - lint source files and tests before building,
-- `build` - transpile TypeScript to ES6,
-- `build:watch` - interactive watch mode to automatically transpile source files,
-- `lint` - lint source files and tests,
-- `prettier` - reformat files,
-- `test` - run tests,
-- `test:watch` - interactive watch mode to automatically re-run tests
-
-## Additional Information
-
-### Why include Volta
-
-[Volta][volta]’s toolchain always keeps track of where you are, it makes sure the tools you use always respect the settings of the project you’re working on. This means you don’t have to worry about changing the state of your installed software when switching between projects. For example, it's [used by engineers at LinkedIn][volta-tomdale] to standardize tools and have reproducible development environments.
-
-I recommend to [install][volta-getting-started] Volta and use it to manage your project's toolchain.
-
-### ES Modules
-
-This template uses native [ESM][esm]. Make sure to read [this][nodejs-esm], and [this][ts47-esm] first.
-
-If your project requires CommonJS, you will have to [convert to ESM][sindresorhus-esm].
-
-Please do not open issues for questions regarding CommonJS or ESM on this repo.
-
-## License
-
-Licensed under the APLv2. See the [LICENSE](https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/LICENSE) file for details.
-
-[ts-badge]: https://img.shields.io/badge/TypeScript-5.4-blue.svg
-[nodejs-badge]: https://img.shields.io/badge/Node.js->=%2020.9-blue.svg
-[nodejs]: https://nodejs.org/dist/latest-v20.x/docs/api/
-[gha-badge]: https://github.com/jsynowiec/node-typescript-boilerplate/actions/workflows/nodejs.yml/badge.svg
-[gha-ci]: https://github.com/jsynowiec/node-typescript-boilerplate/actions/workflows/nodejs.yml
-[typescript]: https://www.typescriptlang.org/
-[typescript-5-4]: https://devblogs.microsoft.com/typescript/announcing-typescript-5-4/
-[license-badge]: https://img.shields.io/badge/license-APLv2-blue.svg
-[license]: https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/LICENSE
-[sponsor-badge]: https://img.shields.io/badge/♥-Sponsor-fc0fb5.svg
-[sponsor]: https://github.com/sponsors/jsynowiec
-[jest]: https://facebook.github.io/jest/
-[eslint]: https://github.com/eslint/eslint
-[wiki-js-tests]: https://github.com/jsynowiec/node-typescript-boilerplate/wiki/Unit-tests-in-plain-JavaScript
-[prettier]: https://prettier.io
-[volta]: https://volta.sh
-[volta-getting-started]: https://docs.volta.sh/guide/getting-started
-[volta-tomdale]: https://twitter.com/tomdale/status/1162017336699838467
-[gh-actions]: https://github.com/features/actions
-[repo-template-action]: https://github.com/jsynowiec/node-typescript-boilerplate/generate
-[esm]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
-[sindresorhus-esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
-[nodejs-esm]: https://nodejs.org/docs/latest-v16.x/api/esm.html
-[ts47-esm]: https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#esm-nodejs
-[editorconfig]: https://editorconfig.org
+- 去读 [Yunzai](https://github.com/TimeRainStarSky/Yunzai) 的源码，了解它的实现细节，然后再去实现。
+- 去抄别人的代码，然后再去实现。
+- 在群里问（
