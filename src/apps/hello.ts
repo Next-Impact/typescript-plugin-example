@@ -1,4 +1,5 @@
-import { logger, plugin } from '../lib/yunzai-js-bridge.js';
+import { plugin, puppeteer } from '../yz-type-loader/yz-type-loader.js';
+import Gcg from '../model/gcg.js';
 
 export class Hello extends plugin {
   constructor() {
@@ -15,16 +16,40 @@ export class Hello extends plugin {
           /** 执行方法 */
           fnc: 'sayHello',
         },
+        {
+          /** 命令正则匹配 */
+          reg: '^#七圣测试命令$',
+          /** 执行方法 */
+          fnc: 'test',
+        },
       ],
     });
   }
 
-  /** 复读 */
-  async sayHello() {
+  /** 发送命令触发问候 */
+  async sayHello(e: BotEvent) {
     logger.info('这是调用全局日志方法记录的日志');
-    logger.debug('这是调用全局日志方法记录的日志');
-    logger.warn('这是调用全局日志方法记录的日志');
-    logger.mark('这是调用全局日志方法记录的日志');
-    this.reply('吃了吗', true);
+    logger.info(`收到消息：${e.msg}`);
+
+    this.reply('你好', true);
+  }
+
+  async test(e: BotEvent): Promise<boolean> {
+    const data = await Gcg.getGcgBasicInfo(e);
+
+    // 手动声明返回数据的类型，这里请求的是 GCG_BASIC_INFO，所以类型是 GcgBasicInfoRsp
+    const result: GcgBasicInfoRsp = data.data;
+
+    // 随便展示一些数据
+    this.reply(`已获得行动牌：${result.action_card_num_gained} 张`);
+
+    // 生成图片发送
+    const img = await puppeteer.screenshot('gcg-test', data);
+    if (img) {
+      await this.reply(img, true);
+    }
+
+    // 返回 true 表示执行成功，机器人不会再继续匹配执行后续插件
+    return true;
   }
 }
