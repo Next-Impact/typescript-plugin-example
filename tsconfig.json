@@ -10,6 +10,7 @@
     "importHelpers": true,
     "alwaysStrict": true,
     "sourceMap": true,
+    "typeRoots": ["node_modules/@types", "src/yz-type-loader"],
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
